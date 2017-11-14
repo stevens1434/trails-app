@@ -51,9 +51,7 @@ class UserTrailsList extends Component {
     this.setState({
       records: records
     })
-
 }
-
 
   render() {
     let user = this.props.user
@@ -70,7 +68,6 @@ class UserTrailsList extends Component {
         <hr />
       </div>
     ))
-
       return (
         <div className='trail'>
           <div>

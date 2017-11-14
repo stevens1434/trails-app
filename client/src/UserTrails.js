@@ -161,15 +161,11 @@ class UserTrails extends Component {
       .then(response => response.json())
       .then(response =>
       this.updateState(response))
-
     }
-
 
   render() {
     let user = this.props.user
     console.log("user: ", user);
-
-
       return (
         <div className='userTrails'>
 

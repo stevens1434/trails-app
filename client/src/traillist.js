@@ -37,7 +37,6 @@ class Traillist extends Component {
     this.change = this.change.bind(this);
     this.handDelete = this.handDelete.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
-    // this.flatten = this.flatten.bind(this);
   }
 
   change(e) {
@@ -54,36 +53,10 @@ class Traillist extends Component {
   handleAdd(e) {
     e.preventDefault();
     let i = e.target.getAttribute('data-key');
-    let data = this.props.records[i]
-    // console.log("add listing to db, e.target: ", e.target);
+    let data = this.props.records[i];
     console.log("data in handleAdd: ", data, "XXX...XXX i in handleAdd: ", i);
-
     this.props.addToDatabase(data);
   }
-
-  // flatten(data) {
-  //     var result = {};
-  //     function recurse (cur, prop) {
-  //         if (Object(cur) !== cur) {
-  //             result[prop] = cur;
-  //         } else if (Array.isArray(cur)) {
-  //              for(var i=0, l=cur.length; i<l; i++)
-  //                  recurse(cur[i], prop + "[" + i + "]");
-  //             if (l == 0)
-  //                 result[prop] = [];
-  //         } else {
-  //             var isEmpty = true;
-  //             for (var p in cur) {
-  //                 isEmpty = false;
-  //                 recurse(cur[p], prop ? prop+"."+p : p);
-  //             }
-  //             if (isEmpty && prop)
-  //                 result[prop] = {};
-  //         }
-  //     }
-  //     recurse(data, "");
-  //     console.log("the result: ", result)
-  // }
 
   componentDidMount() {
     let records = this.props.records;
@@ -91,9 +64,7 @@ class Traillist extends Component {
     this.setState({
       records: records
     })
-
 }
-
 
   render() {
     let user = this.props.user
@@ -111,7 +82,6 @@ class Traillist extends Component {
         <hr />
       </div>
     ))
-
       return (
         <div className='trail'>
           <div>
