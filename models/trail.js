@@ -2,47 +2,50 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 
 var trailSchema = new mongoose.Schema({
+  userId: [{
+    type: String, ref: 'User'
+  }],
   name: {
-    type: String,
+    type: String
   },
   city: {
-    type: String,
+    type: String
   },
   state: {
-    type: String,
+    type: String
   },
   country: {
-    type: String,
+    type: String
   },
   unique_id: {
-    type: Number,
+    type: Number
   },
   lat: {
-    type: String,
+    type: String
   },
   lon: {
-    type: Number,
+    type: Number
   },
   directions: {
-    type: Number,
+    type: String
   },
   description: {
-    type: String,
+    type: String
   },
   activities: {
-    type: Array,
+    type: Array
   },
   activities_name: {
-    type: String,
+    type: String
   },
   activities_id: {
-    type: Number,
+    type: Number
   },
   activities_rating: {
-    type: Number,
+    type: Number
   },
   activities_thumbnail: {
-    type: String,
+    type: String
   }
 });
 

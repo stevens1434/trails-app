@@ -69,9 +69,9 @@ class App extends Component {
         <Router>
           <div className='App'>
             <UserProfile user={this.state.user} logout={this.logout} />
-              <Route exact path="/trail"
-                render={() => <Trail user={this.state.user} />}
-              />
+            <Route exact path="/trail"
+              render={() => <Trail user={this.state.user} />}
+            />
             </div>
         </Router>
       );

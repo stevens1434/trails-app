@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 
 // Mongoose stuff
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/trails-app');
+mongoose.connect('mongodb://localhost/trails-app', { useMongoClient: true });
 
 var User = require('./models/user');
 var Trail = require('./models/trail');

@@ -13,6 +13,7 @@ import Trailapi from './trailapi';
 import Traillist from './traillist';
 import axios from 'axios';
 var unirest = require('unirest');
+var jQuery = require('jquery');
 
 class Trail extends Component {
   constructor(props) {
@@ -42,6 +43,7 @@ class Trail extends Component {
     this.stateChangeState = this.stateChangeState.bind(this);
     this.stateChangeCity = this.stateChangeCity.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.addToDatabase = this.addToDatabase.bind(this);
   }
 
   change(e) {
@@ -76,69 +78,73 @@ class Trail extends Component {
     let state = this.state.state;
     let city = this.state.city;
     let activity = this.state.activities_name;
-    console.log("this.state: ", this.state);
+    // console.log("this.state: ", this.state);
     let params;
-    if (activity !== '' && city == '' && city === '') {
+    if (activity !== '' && city === '' && state === '') {
       params = 'q[activities_activity_type_name_eq]='+activity
       console.log("params activity: ", params);
-    } else if (activity !== '' && city !== '' && city === '') {
+    } else if (activity !== '' && city !== '' && state === '') {
       params = 'q[activities_activity_type_name_eq]='+activity+'&q[city_cont]='+city
       console.log("params activity/city: ", params);
-    } else if (activity !== '' && city !== '' && city !== '') {
+    } else if (activity !== '' && city !== '' && state !== '') {
       params = 'q[activities_activity_type_name_eq]='+activity+'&q[city_cont]='+city+'&q[state_cont]='+state
       console.log("params activity/city/state: ", params);
+    } else if (activity === '' && city !== '' && state !== '') {
+      params = 'q[city_cont]='+city+'&q[state_cont]='+state
+      console.log("params city/state: ", params);
+    } else if (activity !== '' && city !== '' && state === '') {
+      params = 'q[state_cont]='+state
+      console.log("params state: ", params);
+    } else if (activity !== '' && city === '' && state !== '') {
+      params = 'q[city_cont]='+city
+      console.log("params city: ", params);
     }
-    let results;
+    let records;
     let a = this;
+    let user = this.state.user;
     unirest.get("https://trailapi-trailapi.p.mashape.com/?" + params)
       .header("X-Mashape-Key", "rDdlPSAkGDmshHDgEMzXDZA0fr6op1ayAEEjsnEInsBvBRqJze")
       .header("Accept", "text/plain")
       .end(function (result) {
-        console.log("result.body.places: ", result.body.places);
-        results = result.body.places;
-        console.log("results in updateState: ", results);
-        let records = [];
-        for (var i = 0; i < results.length; i++) {
-            records.push(results[i])
-          }
-          // console.log("bankRecords: ", records);
-        console.log("records: ", records);
+        // console.log("result.body.places: ", result.body.places);
+        records = result.body.places;
+        console.log("results in updateState: ", records);
         a.setState({
           records: records
-        })
-        axios.post('/trail', {
-          data: results
-        }).then(function(response) {
-          console.log("response: ", response);
-        }).catch(function(err) {
-          console.log("err: ", err);
-        })
-
+        });
+        // //add userId to results and send over
+        // for (var i = 0; i < records.length; i++) {
+        //   records[i].userId = user.id;
+        //   console.log("records[i]: ", records[i])
+        // }
+        // console.log('records.userId', records)
+        // axios.post('/trail', {
+        //   data: records
+        // }).then(function(response) {
+        //   console.log("response: ", response);
+        // }).catch(function(err) {
+        //   console.log("err: ", err);
+        // })
     });
-    // this.setState({
-    //   records: records,
-    //   city: '',
-    //   state: '',
-    //   country: '',
-    //   name: '',
-    //   unique_id: '',
-    //   lat: '',
-    //   lon: '',
-    //   directions: '',
-    //   description: '',
-    //   activities: [],
-    //   activities_name: '',
-    //   activities_id: '',
-    //   activities_rating: '',
-    //   activities_thumbnail: ''
-    // })
-    // axios.post('/trail', {
-    //   data: results
-    // }).then(function(response) {
-    //   console.log("response: ", response);
-    // }).catch(function(err) {
-    //   console.log("err: ", err);
-    // })
+  }
+
+  addToDatabase(data) {
+    console.log("data in parent: ", data)
+    let records = data
+    let a = this;
+    let user = this.state.user;
+    for (var i = 0; i < records.length; i++) {
+      records[i].userId = user.id;
+      console.log("records[i]: ", records[i])
+    }
+    console.log('records.userId', records)
+    axios.post('/trail', {
+      data: records
+    }).then(function(response) {
+      console.log("response: ", response);
+    }).catch(function(err) {
+      console.log("err: ", err);
+    })
   }
 
   componentDidMount() {
@@ -171,6 +177,7 @@ class Trail extends Component {
             <Traillist
               records = {this.state.records}
               handleDelete = {this.handleDelete}
+              addToDatabase = {this.addToDatabase}
               />
         </div>
       );

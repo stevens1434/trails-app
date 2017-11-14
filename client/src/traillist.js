@@ -36,6 +36,7 @@ class Traillist extends Component {
     this.componentDidMount = this.componentDidMount.bind(this);
     this.change = this.change.bind(this);
     this.handDelete = this.handDelete.bind(this);
+    this.handleAdd = this.handleAdd.bind(this);
     // this.flatten = this.flatten.bind(this);
   }
 
@@ -46,8 +47,18 @@ class Traillist extends Component {
   handDelete(e) {
     e.preventDefault();
     let i = e.target.getAttribute('data-key');
-    console.log("delete that listing");
+    console.log("delete that listing: ", i);
     this.props.handleDelete(i);
+  }
+
+  handleAdd(e) {
+    e.preventDefault();
+    let i = e.target.getAttribute('data-key');
+    let data = this.props.records[i]
+    // console.log("add listing to db, e.target: ", e.target);
+    console.log("data in handleAdd: ", data, "XXX...XXX i in handleAdd: ", i);
+
+    this.props.addToDatabase(data);
   }
 
   // flatten(data) {
@@ -90,10 +101,13 @@ class Traillist extends Component {
     console.log("this.props.records in render in traillist: ", records)
     let mappedItems = this.props.records.map((records, index) => (
       <div key={index}>
-        <div className='col s2' data-key={index}>{records.name} {records.city}</div>
+        <div className='col s2' data-key={index}>{records.name}</div>
+        <div className='col s2' data-key={index}>{records.city}</div>
+        <div className='col s2' data-key={index}>{records.state}</div>
         <div className='col s4' data-key={index}>{records.lat}</div>
         <div className='col s2' data-key={index}>{records.description}</div>
-        <button type="delete" value="delete" onClick={this.handDelete}>Delete</button>
+        <button type="Submit" data-key={index} data-value={records} onClick={this.handleAdd}>Add To Trails</button>
+        <button type="delete" data-key={index} value="delete" onClick={this.handDelete}>Delete</button>
         <hr />
       </div>
     ))

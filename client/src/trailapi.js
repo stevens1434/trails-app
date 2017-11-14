@@ -52,31 +52,6 @@ class Trailapi extends Component {
     console.log("search in trailapi from form", e);
     console.log("e.target", e.target.parent);
     this.props.updateState(e);
-    // let activities_name = this.state.activities_name;
-    // let state = this.state.state;
-    // let city = this.state.city;
-    // let activity = this.state.activities_name;
-    // console.log("this.state: ", this.state);
-    // let a = this;
-    // let params;
-    // if (activity !== '' && city == '' && city === '') {
-    //   params = 'q[activities_activity_type_name_eq]='+activity
-    //   console.log("params activity: ", params);
-    // } else if (activity !== '' && city !== '' && city === '') {
-    //   params = 'q[activities_activity_type_name_eq]='+activity+'&q[city_cont]='+city
-    //   console.log("params activity/city: ", params);
-    // } else if (activity !== '' && city !== '' && city !== '') {
-    //   params = 'q[activities_activity_type_name_eq]='+activity+'&q[city_cont]='+city+'&q[state_cont]='+state
-    //   console.log("params activity/city/state: ", params);
-    // }
-    // unirest.get("https://trailapi-trailapi.p.mashape.com/?" + params)
-    //   .header("X-Mashape-Key", "rDdlPSAkGDmshHDgEMzXDZA0fr6op1ayAEEjsnEInsBvBRqJze")
-    //   .header("Accept", "text/plain")
-    //   .end(function (result) {
-    //     console.log("result.body.places: ", result.body.places);
-    //     let results = result.body.places
-    //     a.props.updateState(result.body.places);
-    // })
   }
 
   handleActivity(e) {
@@ -139,6 +114,7 @@ class Trailapi extends Component {
           City: <input type="text" name="city" onChange={this.handleCity}/>
           State: <input type="text" name="state" onChange={this.handleState}/>
           Activities: <select onChange={this.handleActivity}>
+            <option value=""></option>
             <option value="hiking">Hiking</option>
             <option value="mountain biking">Mountain Biking</option>
             <option value="camping">Camping</option>
