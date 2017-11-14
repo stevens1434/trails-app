@@ -103,7 +103,7 @@ class Trail extends Component {
           console.log("err: ", err);
         })
 
-    })
+    });
     // this.setState({
     //   records: records,
     //   city: '',
