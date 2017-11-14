@@ -1,14 +1,5 @@
 import React, { Component } from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom';
 import './App.css';
-import Signup from './Signup';
-import Login from './Login';
-import Logout from './Logout';
-import UserProfile from './UserProfile';
 import Trailapi from './trailapi';
 import Traillist from './traillist';
 import axios from 'axios';
@@ -133,10 +124,11 @@ class Trail extends Component {
     let records = data
     let a = this;
     let user = this.state.user;
-    for (var i = 0; i < records.length; i++) {
-      records[i].userId = user.id;
-      console.log("records[i]: ", records[i])
-    }
+    records.userId = user.id;
+    // for (var i = 0; i < records.length; i++) {
+    //   records[i].userId = user.id;
+    //   console.log("records[i]: ", records[i])
+    // }
     console.log('records.userId', records)
     axios.post('/trail', {
       data: records

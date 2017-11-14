@@ -3,7 +3,7 @@ var bcrypt = require('bcrypt');
 
 var trailSchema = new mongoose.Schema({
   userId: [{
-    type: String, ref: 'User'
+    type: [String], ref: 'User'
   }],
   name: {
     type: String
@@ -21,7 +21,7 @@ var trailSchema = new mongoose.Schema({
     type: Number
   },
   lat: {
-    type: String
+    type: Number
   },
   lon: {
     type: Number

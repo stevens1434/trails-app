@@ -14,6 +14,10 @@ class UserProfile extends Component {
       <div className='UserProfileBox'>
         <p>Hello, {this.props.user.name}!</p>
         <a onClick={this.props.logout}>Logout</a>
+        <ul>
+          <li><a className="white-text" href="/trail">Search</a></li>
+          <li><a className="white-text" href="/:user/:trailId">All Trails</a></li>
+        </ul>
       </div>
     );
   }
