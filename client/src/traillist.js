@@ -35,11 +35,19 @@ class Traillist extends Component {
     }
     this.componentDidMount = this.componentDidMount.bind(this);
     this.change = this.change.bind(this);
+    this.handDelete = this.handDelete.bind(this);
     // this.flatten = this.flatten.bind(this);
   }
 
   change(e) {
     console.log("this.state in traillist child: ", this.state);
+  }
+
+  handDelete(e) {
+    e.preventDefault();
+    let i = e.target.getAttribute('data-key');
+    console.log("delete that listing");
+    this.props.handleDelete(i);
   }
 
   // flatten(data) {
@@ -78,9 +86,6 @@ class Traillist extends Component {
 
   render() {
     let user = this.props.user
-    // this.setState({
-    //   user: user
-    // })
     let records = this.props.records
     console.log("this.props.records in render in traillist: ", records)
     let mappedItems = this.props.records.map((records, index) => (
@@ -88,16 +93,17 @@ class Traillist extends Component {
         <div className='col s2' data-key={index}>{records.name} {records.city}</div>
         <div className='col s4' data-key={index}>{records.lat}</div>
         <div className='col s2' data-key={index}>{records.description}</div>
+        <button type="delete" value="delete" onClick={this.handDelete}>Delete</button>
         <hr />
       </div>
     ))
 
       return (
         <div className='trail'>
-
-          <h3 onClick={this.change}>here is the traillist</h3>
-          <p>{mappedItems}</p>
-
+          <div>
+            <h3 onClick={this.change}>here is the traillist</h3>
+            <p>{mappedItems}</p>
+          </div>
         </div>
       );
     }

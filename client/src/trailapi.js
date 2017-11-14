@@ -119,7 +119,10 @@ class Trailapi extends Component {
 
   componentDidMount() {
     let records = this.props.records;
-    // this.setState =
+    console.log('this.props.records in compondidmount in trailapi: ', this.props.records)
+    this.setState({
+      records: records
+    })
 }
 
 

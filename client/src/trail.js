@@ -41,10 +41,21 @@ class Trail extends Component {
     this.stateChangeActivity = this.stateChangeActivity.bind(this);
     this.stateChangeState = this.stateChangeState.bind(this);
     this.stateChangeCity = this.stateChangeCity.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   change(e) {
     console.log("this.state in trail.js parent: ", this.state);
+  }
+
+  handleDelete(i) {
+    console.log("handle delete after delete button in trail.js parent");
+    let currentState = this.state.records;
+    let listing = this.state.records[i];
+    currentState.splice(i, 1);
+    this.setState({
+      records: currentState
+    })
   }
 
   stateChangeActivity(e) {
@@ -132,6 +143,10 @@ class Trail extends Component {
 
   componentDidMount() {
     console.log("abc");
+    let user = this.props.user;
+    this.setState({
+      user: user
+    })
 }
 
 
@@ -155,6 +170,7 @@ class Trail extends Component {
             />
             <Traillist
               records = {this.state.records}
+              handleDelete = {this.handleDelete}
               />
         </div>
       );
