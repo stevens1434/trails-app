@@ -46,7 +46,6 @@ class Traillist extends Component {
   handDelete(e) {
     e.preventDefault();
     let i = e.target.getAttribute('data-key');
-    console.log("delete that listing: ", i);
     this.props.handleDelete(i);
   }
 
@@ -54,13 +53,11 @@ class Traillist extends Component {
     e.preventDefault();
     let i = e.target.getAttribute('data-key');
     let data = this.props.records[i];
-    console.log("data in handleAdd: ", data, "XXX...XXX i in handleAdd: ", i);
     this.props.addToDatabase(data);
   }
 
   componentDidMount() {
     let records = this.props.records;
-    console.log('this.props.records in compondidmount in traillist: ', this.props.records)
     this.setState({
       records: records
     })
@@ -69,7 +66,6 @@ class Traillist extends Component {
   render() {
     let user = this.props.user
     let records = this.props.records
-    console.log("this.props.records in render in traillist: ", records)
     let mappedItems = this.props.records.map((records, index) => (
       <div key={index}>
         <div className='col s2' data-key={index}>{records.name}</div>

@@ -45,7 +45,6 @@ class Trail extends Component {
   }
 
   handleDelete(i) {
-    console.log("handle delete after delete button in trail.js parent");
     let currentState = this.state.records;
     let listing = this.state.records[i];
     currentState.splice(i, 1);
@@ -72,7 +71,6 @@ class Trail extends Component {
     let state = this.state.state;
     let city = this.state.city;
     let activity = this.state.activities_name;
-    // console.log("this.state: ", this.state);
     let params;
     if (activity !== '' && city === '' && state === '') {
       params = 'q[activities_activity_type_name_eq]='+activity
@@ -100,38 +98,28 @@ class Trail extends Component {
       .header("X-Mashape-Key", trailKey)
       .header("Accept", "text/plain")
       .end(function (result) {
-        // console.log("result.body.places: ", result.body.places);
         records = result.body.places;
-        console.log("results in updateState: ", records);
         a.setState({
           records: records
         });
     });
   }
-  //rDdlPSAkGDmshHDgEMzXDZA0fr6op1ayAEEjsnEInsBvBRqJze
 
   addToDatabase(data) {
-    console.log("data in parent: ", data)
     let records = data
     let a = this;
     let user = this.state.user;
     records.userId = user.id;
-    // for (var i = 0; i < records.length; i++) {
-    //   records[i].userId = user.id;
-    //   console.log("records[i]: ", records[i])
-    // }
-    console.log('records.userId', records)
     axios.post('/trail', {
       data: records
     }).then(function(response) {
-      console.log("response: ", response);
+      // console.log("response: ", response);
     }).catch(function(err) {
       console.log("err: ", err);
     })
   }
 
   componentDidMount() {
-    console.log("abc");
     let user = this.props.user;
     this.setState({
       user: user
@@ -139,24 +127,16 @@ class Trail extends Component {
     axios.get('trail/key', {
       data: trailKey
     }).then(function(response) {
-      // console.log("key response!!!!!!!!: ", response.data);
       trailKey = response.data;
     }).catch(function(err) {
       console.log("err: ", err);
     })
 }
 
-
   render() {
     let user = this.props.user
-    // this.setState({
-    //   user: user
-    // })
-    console.log("render in trail src");
-    console.log("user: ", user);
       return (
         <div className='trail'>
-
           <p onClick={this.change}>Trails</p>
           <Trailapi
             updateState={this.updateState}

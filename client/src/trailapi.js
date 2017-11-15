@@ -34,8 +34,6 @@ class Trailapi extends Component {
       activities_thumbnail: ''
     }
     this.componentDidMount = this.componentDidMount.bind(this);
-    // this.updateState = this.updateState.bind(this);
-    // this.flatten = this.flatten.bind(this);
     this.search = this.search.bind(this);
     this.handleActivity = this.handleActivity.bind(this);
     this.handleState = this.handleState.bind(this);
@@ -49,8 +47,6 @@ class Trailapi extends Component {
 
   search(e) {
     e.preventDefault();
-    console.log("search in trailapi from form", e);
-    console.log("e.target", e.target.parent);
     this.props.updateState(e);
   }
 
@@ -67,48 +63,18 @@ class Trailapi extends Component {
     this.props.stateChangeCity(e);
   }
 
-
-  // flatten(data) {
-  //     var result = {};
-  //     function recurse (cur, prop) {
-  //         if (Object(cur) !== cur) {
-  //             result[prop] = cur;
-  //         } else if (Array.isArray(cur)) {
-  //              for(var i=0, l=cur.length; i<l; i++)
-  //                  recurse(cur[i], prop + "[" + i + "]");
-  //             if (l == 0)
-  //                 result[prop] = [];
-  //         } else {
-  //             var isEmpty = true;
-  //             for (var p in cur) {
-  //                 isEmpty = false;
-  //                 recurse(cur[p], prop ? prop+"."+p : p);
-  //             }
-  //             if (isEmpty && prop)
-  //                 result[prop] = {};
-  //         }
-  //     }
-  //     recurse(data, "");
-  //     console.log("the result: ", result)
-  // }
-
   componentDidMount() {
     let records = this.props.records;
-    console.log('this.props.records in compondidmount in trailapi: ', this.props.records)
     this.setState({
       records: records
     })
 }
 
-
   render() {
     let user = this.props.user
     let records = this.props.records
-    console.log("this.props.records in render in trailapi: ", records)
-
       return (
         <div className='trail'>
-
           <h3 onClick={this.check}>insert search form here</h3>
           <form action="/trail">
           City: <input type="text" name="city" onChange={this.handleCity}/>
