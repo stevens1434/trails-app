@@ -8,7 +8,7 @@ import './App.css';
 import axios from 'axios';
 var unirest = require('unirest');
 
-class UserTrailsList extends Component {
+class IndividTrailList extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -31,32 +31,32 @@ class UserTrailsList extends Component {
     }
     this.componentDidMount = this.componentDidMount.bind(this);
     this.change = this.change.bind(this);
-    this.handDelete = this.handDelete.bind(this);
-    this.handleView = this.handleView.bind(this);
+    // this.handDelete = this.handDelete.bind(this);
+    // this.handleAdd = this.handleAdd.bind(this);
   }
 
   change(e) {
     console.log("this.state in traillist child: ", this.state);
   }
 
-  handDelete(e) {
-    e.preventDefault();
-    let i = e.target.getAttribute('data-key');
-    console.log("delete that listing: ", i);
-    this.props.handleDelete(i);
-  }
+  // handDelete(e) {
+  //   e.preventDefault();
+  //   let i = e.target.getAttribute('data-key');
+  //   console.log("delete that listing: ", i);
+  //   this.props.handleDelete(i);
+  // }
 
-  handleView(e) {
-    // e.preventDefault();
-    let i = e.target.getAttribute('data-key');
-    console.log("view that listing: ", i);
-
-    // this.props.viewDetails(i);
-  }
+  // handleAdd(e) {
+  //   e.preventDefault();
+  //   let i = e.target.getAttribute('data-key');
+  //   let data = this.props.records[i];
+  //   console.log("data in handleAdd: ", data, "XXX...XXX i in handleAdd: ", i);
+  //   this.props.addToDatabase(data);
+  // }
 
   componentDidMount() {
     let records = this.props.records;
-    console.log('this.props.records in compondidmount in traillist: ', this.props.records)
+    // console.log('this.props.records in compondidmount in traillist: ', this.props.records)
     this.setState({
       records: records
     })
@@ -73,15 +73,13 @@ class UserTrailsList extends Component {
         <div className='col s2' data-key={index}>{records.state}</div>
         <div className='col s4' data-key={index}>{records.lat}</div>
         <div className='col s2' data-key={index}>{records.description}</div>
-        <button type="delete" data-key={index} value="delete" onClick={this.handDelete}>Delete</button>
-        <Link to={"/usertrails/" + records._id} params={records._id} data-key={index} value={records._id} onClick={this.handleView}>{records._id} View Details</Link>
         <hr />
       </div>
     ))
       return (
-        <div className='trail'>
+        <div className='individTrailList'>
           <div>
-            <h3 onClick={this.change}>UserTrailsList</h3>
+            <h3 onClick={this.change}>here is the traillist</h3>
             <p>{mappedItems}</p>
           </div>
         </div>
@@ -89,4 +87,4 @@ class UserTrailsList extends Component {
     }
 }
 
-export default UserTrailsList;
+export default IndividTrailList;

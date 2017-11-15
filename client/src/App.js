@@ -10,6 +10,7 @@ import Login from './Login';
 import Logout from './Logout';
 import UserProfile from './UserProfile';
 import Trail from './trail';
+import IndividTrail from './IndividTrail';
 import UserTrails from './UserTrails';
 import axios from 'axios';
 
@@ -73,8 +74,13 @@ class App extends Component {
             <Route exact path="/trail"
               render={() => <Trail user={this.state.user} />}
             />
-            <Route exact path="/:user"
+            <Route exact path="/usertrails"
                 render={() => <UserTrails user={this.state.user} />}
+              />
+            <Route path="/usertrails/:id"
+                render={() => <IndividTrail
+                  user={this.state.user}
+                  />}
               />
             </div>
         </Router>

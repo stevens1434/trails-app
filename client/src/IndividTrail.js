@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
-import UserTrailsList from './UserTrailsList';
 import axios from 'axios';
+import IndividTrailList from './IndividTrailList';
+let records;
 
-class UserTrails extends Component {
+class IndividTrail extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -25,51 +26,61 @@ class UserTrails extends Component {
       activities_thumbnail: ''
     }
     this.componentDidMount = this.componentDidMount.bind(this);
+    // this.updateState = this.updateState.bind(this);
     this.change = this.change.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
+    // this.stateChangeActivity = this.stateChangeActivity.bind(this);
+    // this.stateChangeState = this.stateChangeState.bind(this);
+    // this.stateChangeCity = this.stateChangeCity.bind(this);
+    // this.handleDelete = this.handleDelete.bind(this);
+    // this.addToDatabase = this.addToDatabase.bind(this);
     this.updateState = this.updateState.bind(this);
-    this.viewDetails = this.viewDetails.bind(this);
+    // this.viewDetails = this.viewDetails.bind(this);
+
   }
 
   change(e) {
-    console.log("this.state in trail.js parent: ", this.state);
+    console.log("this.state in IndividTrail.js parent: ", this.state);
   }
 
   updateState(response) {
+    console.log("update state response in individTrail", response);
     this.setState({
       records: response
     })
+    let records = response;
   }
 
-  handleDelete(i) {
-    let currentState = this.state.records;
-    let listing = this.state.records[i];
-    let a = this;
-    axios.put('/UserTrail', {
-      data: listing
-    }).then(function (response) {
-      console.log("currentState: ", currentState);
-      currentState.splice(i, 1);
-      a.setState({
-        records: currentState
-      })
-    }).catch(function (error) {
-      console.log("error: ", error);
-    })
-  }
+  // handleDelete(i) {
+  //   // console.log("handle delete after delete button in trail.js parent");
+  //   let currentState = this.state.records;
+  //   let listing = this.state.records[i];
+  //   let a = this;
+  //   axios.put('/UserTrail', {
+  //     data: listing
+  //   }).then(function (response) {
+  //     console.log("currentState: ", currentState);
+  //     currentState.splice(i, 1);
+  //     a.setState({
+  //       records: currentState
+  //     })
+  //   }).catch(function (error) {
+  //     console.log("error: ", error);
+  //   })
+  // }
 
-  viewDetails(i) {
-    let currentState = this.state.records;
-    let listing = this.state.records[i]._id;
-    console.log("listing id in UserTrails.js", listing);
-    axios.get('/UserTrail/user/' + listing, {
-      data: listing
-    }).then(function (response) {
-      console.log("currentState: ", currentState);
-    }).catch(function (error) {
-      console.log("error: ", error);
-    })
-  }
+  // viewDetails(i) {
+  //   let currentState = this.state.records;
+  //   let listing = this.state.records[i]._id;
+  //   console.log("listing id in UserTrails.js", listing);
+  //   axios.get('/UserTrail/user/' + listing, {
+  //     data: listing
+  //   }).then(function (response) {
+  //     console.log("currentState: ", currentState);
+  //     currentState.splice(i, 1);
+  //   }).catch(function (error) {
+  //     console.log("error: ", error);
+  //   })
+  // }
 
   // stateChangeActivity(e) {
   //   this.setState({activities_name: e.target.value});
@@ -159,13 +170,19 @@ class UserTrails extends Component {
   // }
 
   componentDidMount() {
-    console.log("abc");
     let user = this.props.user;
-    console.log("user.id in compdidmount in UserTrails: ", user.id)
+    console.log("user.id in compdidmount in IndividTrail: ", user.id)
     this.setState({
       user: user
-    })
-    fetch('/UserTrail/' + user.id)
+    });
+    let url = window.location.pathname
+    // let url2 = this._reactInternalFiber.return.stateNode.context.router.route.location.pathname;
+    // console.log("params in IndividTrail: ", this._reactInternalFiber.return.stateNode.context.router.route.location.pathname)
+    // console.log("window.location: ", window.location.pathname)
+    var id = url.substring(url.lastIndexOf('/') + 1);
+    // console.log("URL: ", url);
+    // console.log("ID: ", id);
+    fetch('/UserTrail/id/' + id)
       .then(response => response.json())
       .then(response =>
       this.updateState(response))
@@ -173,20 +190,16 @@ class UserTrails extends Component {
 
   render() {
     let user = this.props.user
-    console.log("user: ", user);
       return (
         <div className='userTrails'>
-
-          <p onClick={this.change}>UserTrails</p>
-          <UserTrailsList
+          <p onClick={this.change}>IndividTrail</p>
+          <IndividTrailList
             user = {this.state.user}
             records = {this.state.records}
-            handleDelete = {this.handleDelete}
-            viewDetails = {this.viewDetails}
             />
         </div>
       );
     }
 }
 
-export default UserTrails;
+export default IndividTrail;

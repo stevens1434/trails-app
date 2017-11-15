@@ -16,7 +16,7 @@ class UserProfile extends Component {
         <a onClick={this.props.logout}>Logout</a>
         <ul>
           <li><a className="white-text" href="/trail">Search</a></li>
-          <li><a className="white-text" href="/:user/:trailId">All Trails</a></li>
+          <li><a className="white-text" href="/UserTrails">All Trails</a></li>
         </ul>
       </div>
     );
