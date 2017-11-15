@@ -4,6 +4,8 @@ var mongoose = require('mongoose');
 var Trail = require('../models/trail');
 var path = require('path');
 const url = require('url');
+var fetch = require("isomorphic-fetch");
+const brewKey = process.env.Brew_Key;
 
 //delete from db -- from /UserTrails parent
 router.put('/', function(req, res, next){
@@ -15,6 +17,20 @@ router.put('/', function(req, res, next){
         else res.end();
     });
 });
+//c15fafad9d8e7f636ad350c36535f65a
+router.post('/getbrews', function(req, res, next) {
+  let data = req.body.data
+  console.log("getbrews in the backend: ", data);
+  console.log("data._id: ", data[0]._id)
+  let lat = data[0].lat;
+  let lon = data[0].lon;
+  console.log('lat: ', lat, 'lon: ', lon);
+  fetch('http://api.brewerydb.com/v2/search/geo/point?lat='+lat+'&lng='+lon+'&key='+brewKey)
+    .then(response => response.json())
+    .then(response =>
+    res.send(response))
+
+})
 
 //get specific trail -- from /trails/:user/:trailid
 router.get('/id/:id', function(req, res, next){

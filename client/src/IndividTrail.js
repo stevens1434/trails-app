@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import IndividTrailList from './IndividTrailList';
+import BreweryList from './BreweryList';
+var unirest = require('unirest');
 let records;
 
 class IndividTrail extends Component {
@@ -10,6 +12,7 @@ class IndividTrail extends Component {
     this.state = {
       user: {},
       records: [],
+      breweries: [],
       city: '',
       state: '',
       country: '',
@@ -35,6 +38,7 @@ class IndividTrail extends Component {
     // this.addToDatabase = this.addToDatabase.bind(this);
     this.updateState = this.updateState.bind(this);
     // this.viewDetails = this.viewDetails.bind(this);
+    this.updateBrewState = this.updateBrewState.bind(this);
 
   }
 
@@ -48,6 +52,12 @@ class IndividTrail extends Component {
       records: response
     })
     let records = response;
+  }
+  updateBrewState(response) {
+    console.log('update state brews in IndividTrail', response);
+    this.setState({
+      breweries: response
+    })
   }
 
   // handleDelete(i) {
@@ -181,11 +191,35 @@ class IndividTrail extends Component {
     // console.log("window.location: ", window.location.pathname)
     var id = url.substring(url.lastIndexOf('/') + 1);
     // console.log("URL: ", url);
-    // console.log("ID: ", id);
+    console.log("ID: ", id);
+    let a = this;
+    let hikesAndBrews = {};
+    let result;
+    let breweries;
     fetch('/UserTrail/id/' + id)
       .then(response => response.json())
       .then(response =>
-      this.updateState(response))
+        this.updateState(response, result = response))
+      .then(response =>
+        axios.post('/UserTrail/getbrews', {
+          data: result
+        }).then(function(response) {
+          //set the state for both here
+          console.log("response: ", response.data.data);
+          a.updateBrewState(response.data.data);
+        }).catch(function(error) {
+          console.log("error: ", error);
+        })
+      )
+
+
+        // fetch('http://api.brewerydb.com/v2/?key=c15fafad9d8e7f636ad350c36535f65a'))
+        // .then(response => response.json())
+        // .then(response =>
+        // this.updateBrewState(response))
+
+      //   .then(
+      // this.updateState(response))
     }
 
   render() {
@@ -196,6 +230,11 @@ class IndividTrail extends Component {
           <IndividTrailList
             user = {this.state.user}
             records = {this.state.records}
+            />
+          <BreweryList
+            user = {this.state.user}
+            records = {this.state.records}
+            breweries = {this.state.breweries}
             />
         </div>
       );

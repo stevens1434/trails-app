@@ -78,9 +78,7 @@ class App extends Component {
                 render={() => <UserTrails user={this.state.user} />}
               />
             <Route path="/usertrails/:id"
-                render={() => <IndividTrail
-                  user={this.state.user}
-                  />}
+                render={() => <IndividTrail user={this.state.user} />}
               />
             </div>
         </Router>

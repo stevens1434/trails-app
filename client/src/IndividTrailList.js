@@ -76,6 +76,7 @@ class IndividTrailList extends Component {
         <hr />
       </div>
     ))
+    
       return (
         <div className='individTrailList'>
           <div>

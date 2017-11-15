@@ -5,6 +5,8 @@ import Traillist from './traillist';
 import axios from 'axios';
 var unirest = require('unirest');
 var jQuery = require('jquery');
+require('dotenv').config();
+let trailKey;
 
 class Trail extends Component {
   constructor(props) {
@@ -39,6 +41,7 @@ class Trail extends Component {
 
   change(e) {
     console.log("this.state in trail.js parent: ", this.state);
+    console.log("trail_key: ", trailKey);
   }
 
   handleDelete(i) {
@@ -94,7 +97,7 @@ class Trail extends Component {
     let a = this;
     let user = this.state.user;
     unirest.get("https://trailapi-trailapi.p.mashape.com/?" + params)
-      .header("X-Mashape-Key", "rDdlPSAkGDmshHDgEMzXDZA0fr6op1ayAEEjsnEInsBvBRqJze")
+      .header("X-Mashape-Key", trailKey)
       .header("Accept", "text/plain")
       .end(function (result) {
         // console.log("result.body.places: ", result.body.places);
@@ -103,21 +106,9 @@ class Trail extends Component {
         a.setState({
           records: records
         });
-        // //add userId to results and send over
-        // for (var i = 0; i < records.length; i++) {
-        //   records[i].userId = user.id;
-        //   console.log("records[i]: ", records[i])
-        // }
-        // console.log('records.userId', records)
-        // axios.post('/trail', {
-        //   data: records
-        // }).then(function(response) {
-        //   console.log("response: ", response);
-        // }).catch(function(err) {
-        //   console.log("err: ", err);
-        // })
     });
   }
+  //rDdlPSAkGDmshHDgEMzXDZA0fr6op1ayAEEjsnEInsBvBRqJze
 
   addToDatabase(data) {
     console.log("data in parent: ", data)
@@ -144,6 +135,14 @@ class Trail extends Component {
     let user = this.props.user;
     this.setState({
       user: user
+    })
+    axios.get('trail/key', {
+      data: trailKey
+    }).then(function(response) {
+      // console.log("key response!!!!!!!!: ", response.data);
+      trailKey = response.data;
+    }).catch(function(err) {
+      console.log("err: ", err);
     })
 }
 
