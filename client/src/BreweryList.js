@@ -52,14 +52,13 @@ class BreweryList extends Component {
     let mappedItems = this.props.breweries.map((breweries, index) => (
           <div class="col-xs-6 col-sm-6 col-lg-4 brewcard">
             <div class="well brewwell" key={index}>
-              <div data-key={index}>Name: {breweries.name}</div>
-              <div data-key={index}>Address: {breweries.streetAddress}</div>
-              <div data-key={index}>City: {breweries.locality}</div>
-              <div data-key={index}>Distance from Hike: {breweries.distance}</div>
-              <div data-key={index}>Closed: {breweries.isClosed}</div>
-              <div data-key={index}>Type: {breweries.locationTypeDisplay}</div>
-              <div data-key={index}>Open to Public: {breweries.openToPublic}</div>
+              <div className="brewName" data-key={index}><h3>{breweries.brewery.name}</h3></div>
+              <div data-key={index}>{breweries.streetAddress}</div>
+              <div data-key={index}>{breweries.locality}</div>
+              <div data-key={index}>{breweries.region}</div>
               <div data-key={index}>Phone: {breweries.phone}</div>
+              <div data-key={index}>Distance from Hike: {breweries.distance} Miles</div>
+              <div data-key={index}>Type: {breweries.locationTypeDisplay}</div>
             </div>
           </div>
     ))

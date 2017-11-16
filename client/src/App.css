@@ -42,6 +42,50 @@ h2{
   padding: 0.5em;
 }
 
+
+.side {
+  background-color: #e5e1d5;
+  height: 90%;
+  margin-left: 10px;
+}
+
+.brewcard {
+
+}
+.brewwell {
+  height: auto;
+  background-color: white;
+  text-align: left;
+  padding-top: 0px;
+}
+.brewName {
+  text-align: center;
+}
+
+.trailcard {
+  background-color: white;
+  height: 0 auto;
+  border: 1px solid #818181;
+  border-radius: 10px;
+  color: #3f5689;
+  font-family: 'Roboto', sans-serif;
+}
+
+.open {
+  color: green;
+}
+.closed {
+  color: red;
+}
+
+
+
+
+
+
+
+
+
 .container, .navbar  {
   background-color: #e5e1d5;
   width: 100%;
@@ -82,25 +126,9 @@ h2{
     margin-left: 50px;
 }
 
-.side {
-  background-color: #e5e1d5;
-  height: 90%;
-  margin-left: 10px;
-}
 
-.brewwell {
-  height: 228px;
-  background-color: white;
-}
 
-.trailcard {
-  background-color: white;
-  height: 0 auto;
-  border: 1px solid #818181;
-  border-radius: 10px;
-  color: #3f5689;
-  font-family: 'Roboto', sans-serif;
-}
+
 
 .food{
   min-height: 500px;
