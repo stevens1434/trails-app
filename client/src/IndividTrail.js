@@ -110,6 +110,8 @@ class IndividTrail extends Component {
   render() {
     let user = this.props.user
     // location = {}
+    lon += 0;
+    lat += 0;
     location.lon = lon;
     location.lat = lat;
     console.log("lon in individ render: ", lon, "lat in individ render: ", lat);
@@ -127,7 +129,6 @@ class IndividTrail extends Component {
               </div>
               <div class='col-sm-3 well side map'>
                 <Map
-                  locate = {this.state.location}
                   location = {location}
                   user = {this.state.user}
                   />

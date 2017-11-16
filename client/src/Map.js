@@ -46,24 +46,22 @@ export default class Map extends Component {
       let b = this;
       let refs = this.refs;
       setTimeout(function(){
-      let locate = a.locate;
-      let location = a.location
-      let lat = a.location.lat;
-      let lon = a.location.lon;
-      console.log("lat: ", lat);
-      console.log("lon: ", lon);
-      console.log("Location: ", location);
-      console.log("locate: ", locate);
-        b.setState({
-          user: user,
-          lat: lat,
-          lon: lon,
-          location: location
-        })
-      new google.maps.Map(refs.map, {
-        center: {lat: lat, lon: lon},
-        zoom: 8
-      });
+        let location = a.location
+        let lat = a.location.lat;
+        let lon = a.location.lon;
+          b.setState({
+            user: user,
+            lat: lat,
+            lon: lon,
+            location: location
+          })
+        new google.maps.Map(refs.map, {
+          center: {
+            lat: lat,
+            lng: lon
+          },
+          zoom: 8
+        });
     }, 1500);
   }
 
@@ -83,3 +81,5 @@ export default class Map extends Component {
 }
 
 // export default Map;
+
+//&callback=initMap
