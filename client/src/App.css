@@ -71,6 +71,11 @@ h2{
   font-family: 'Roboto', sans-serif;
 }
 
+.map {
+  height: auto;
+  width: auto;
+}
+
 .open {
   color: green;
 }

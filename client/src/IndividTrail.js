@@ -3,8 +3,13 @@ import './App.css';
 import axios from 'axios';
 import IndividTrailList from './IndividTrailList';
 import BreweryList from './BreweryList';
+import Map from './Map';
+import { GoogleMapLoader, GoogleMap, DirectionsRenderer } from "react-google-maps";
 var unirest = require('unirest');
 let records;
+let lon;
+let lat;
+let location = {};
 
 class IndividTrail extends Component {
   constructor(props) {
@@ -12,6 +17,9 @@ class IndividTrail extends Component {
     this.state = {
       user: {},
       records: [],
+      location: {},
+      lon: '',
+      lat: '',
       breweries: [],
       city: '',
       state: '',
@@ -40,10 +48,18 @@ class IndividTrail extends Component {
   }
 
   updateState(response) {
+    let latAndLon = {};
+    latAndLon.lat = response[0].lat;
+    latAndLon.lon = response[0].lon;
     this.setState({
-      records: response
+      records: response,
+      lon: response[0].lon,
+      lat: response[0].lat,
+      location: latAndLon
     })
     let records = response;
+    lon = response[0].lon;
+    lat = response[0].lat
   }
   updateBrewState(response) {
     this.setState({
@@ -65,10 +81,20 @@ class IndividTrail extends Component {
     let hikesAndBrews = {};
     let result;
     let breweries;
+    // let location = {}
     fetch('/UserTrail/id/' + id)
       .then(response => response.json())
       .then(response =>
-        this.updateState(response, result = response))
+        this.updateState(response,
+            result = response,
+            location.lat = response.lat,
+            location.lon = response.lon,
+            lat = response.lat,
+            lon = response.lon,
+            // this.setState({
+            //   location: location
+            // })
+          ))
       .then(response =>
         axios.post('/UserTrail/getbrews', {
           data: result
@@ -78,62 +104,43 @@ class IndividTrail extends Component {
           console.log("error: ", error);
         })
       )
+
     }
-
-
-// <div class="container-fluid">
-
-  // <div class="row content">
-
-    // <div class="col-sm-3 well side">
-      // <h2>Logo</h2>
-      // <ul class="nav nav-pills nav-stacked">
-        // <li class="active"><a href="#section1">Dashboard</a></li>
-        // <li><a href="#section2">Age</a></li>
-        // <li><a href="#section3">Gender</a></li>
-        // <li><a href="#section3">Geo</a></li>
-      // </ul><br>
-    // </div>
-    // <br>
-    //
-    // <div class="col-sm-8">
-    //   <div class="row">
-    //     <div class="col-sm-4">
-    //       <div class="well">
-    //         <h3>Text</h3>
-    //         <p>Text</p>
-    //         <p>Text</p>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
-
-  // </div>
-// </div>
 
   render() {
     let user = this.props.user
+    // location = {}
+    location.lon = lon;
+    location.lat = lat;
+    console.log("lon in individ render: ", lon, "lat in individ render: ", lat);
+    console.log("location in individTrail render: ", location);
       return (
-        <div class="container-fluid">
-          <div class="row content">
-            <div  class="col-sm-3 well side">
+          <div class="container-fluid">
+            <div class="row content">
+              <div  class="col-sm-3 well side">
 
-              <h2 onClick={this.change}>Your Park</h2>
-              <IndividTrailList
-                user = {this.state.user}
-                records = {this.state.records}
-                />
-                </div>
-                <div class="col-sm-8">
-              <BreweryList
-                user = {this.state.user}
-                records = {this.state.records}
-                breweries = {this.state.breweries}
-                />
-                </div>
-
+                <h2 onClick={this.change}>Your Park</h2>
+                <IndividTrailList
+                  user = {this.state.user}
+                  records = {this.state.records}
+                  />
+              </div>
+              <div class='col-sm-3 well side map'>
+                <Map
+                  locate = {this.state.location}
+                  location = {location}
+                  user = {this.state.user}
+                  />
+              </div>
+              <div class="col-sm-8">
+                <BreweryList
+                  user = {this.state.user}
+                  records = {this.state.records}
+                  breweries = {this.state.breweries}
+                  />
+                  </div>
+            </div>
           </div>
-        </div>
 
       );
     }
