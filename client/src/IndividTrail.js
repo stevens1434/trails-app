@@ -34,6 +34,7 @@ class IndividTrail extends Component {
     this.updateBrewState = this.updateBrewState.bind(this);
   }
 
+
   change(e) {
     console.log("this.state in IndividTrail.js parent: ", this.state);
   }
@@ -79,21 +80,61 @@ class IndividTrail extends Component {
       )
     }
 
+
+// <div class="container-fluid">
+
+  // <div class="row content">
+
+    // <div class="col-sm-3 well side">
+      // <h2>Logo</h2>
+      // <ul class="nav nav-pills nav-stacked">
+        // <li class="active"><a href="#section1">Dashboard</a></li>
+        // <li><a href="#section2">Age</a></li>
+        // <li><a href="#section3">Gender</a></li>
+        // <li><a href="#section3">Geo</a></li>
+      // </ul><br>
+    // </div>
+    // <br>
+    //
+    // <div class="col-sm-8">
+    //   <div class="row">
+    //     <div class="col-sm-4">
+    //       <div class="well">
+    //         <h3>Text</h3>
+    //         <p>Text</p>
+    //         <p>Text</p>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </div>
+
+  // </div>
+// </div>
+
   render() {
     let user = this.props.user
       return (
-        <div className='userTrails'>
-          <p onClick={this.change}>IndividTrail</p>
-          <IndividTrailList
-            user = {this.state.user}
-            records = {this.state.records}
-            />
-          <BreweryList
-            user = {this.state.user}
-            records = {this.state.records}
-            breweries = {this.state.breweries}
-            />
+        <div class="container-fluid">
+          <div class="row content">
+            <div  class="col-sm-3 well side">
+
+              <h2 onClick={this.change}>Your Park</h2>
+              <IndividTrailList
+                user = {this.state.user}
+                records = {this.state.records}
+                />
+                </div>
+                <div class="col-sm-8">
+              <BreweryList
+                user = {this.state.user}
+                records = {this.state.records}
+                breweries = {this.state.breweries}
+                />
+                </div>
+
+          </div>
         </div>
+
       );
     }
 }

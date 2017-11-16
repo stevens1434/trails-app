@@ -50,25 +50,21 @@ class BreweryList extends Component {
     let records = this.props.records
     let breweries = this.props.breweries
     let mappedItems = this.props.breweries.map((breweries, index) => (
-      <div key={index}>
-        <div className='col s2' data-key={index}>Name: {breweries.name}</div>
-        <div className='col s2' data-key={index}>Address: {breweries.streetAddress}</div>
-        <div className='col s2' data-key={index}>City: {breweries.locality}</div>
-        <div className='col s4' data-key={index}>Distance from Hike: {breweries.distance}</div>
-        <div className='col s2' data-key={index}>Closed: {breweries.isClosed}</div>
-        <div className='col s2' data-key={index}>Type: {breweries.locationTypeDisplay}</div>
-        <div className='col s2' data-key={index}>Open to Public: {breweries.openToPublic}</div>
-        <div className='col s2' data-key={index}>Phone: {breweries.phone}</div>
-        <hr />
-      </div>
+          <div class="col-xs-6 col-sm-6 col-lg-4 brewcard">
+            <div class="well brewwell" key={index}>
+              <div data-key={index}>Name: {breweries.name}</div>
+              <div data-key={index}>Address: {breweries.streetAddress}</div>
+              <div data-key={index}>City: {breweries.locality}</div>
+              <div data-key={index}>Distance from Hike: {breweries.distance}</div>
+              <div data-key={index}>Closed: {breweries.isClosed}</div>
+              <div data-key={index}>Type: {breweries.locationTypeDisplay}</div>
+              <div data-key={index}>Open to Public: {breweries.openToPublic}</div>
+              <div data-key={index}>Phone: {breweries.phone}</div>
+            </div>
+          </div>
     ))
       return (
-        <div className='individTrailList'>
-          <div>
-            <h3 onClick={this.change}>Here is the BreweryList</h3>
-            <p>{mappedItems}</p>
-          </div>
-        </div>
+            <div class="row brews" onClick={this.change}>{mappedItems}</div>
       );
     }
 }

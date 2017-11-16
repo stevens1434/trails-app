@@ -12,6 +12,7 @@ import UserProfile from './UserProfile';
 import Trail from './trail';
 import IndividTrail from './IndividTrail';
 import UserTrails from './UserTrails';
+
 import axios from 'axios';
 
 class App extends Component {
@@ -69,24 +70,55 @@ class App extends Component {
     if (typeof this.state.user === 'object' && Object.keys(this.state.user).length !== 0) {
       return (
         <Router>
-          <div className='App'>
-            <UserProfile user={this.state.user} logout={this.logout} />
-            <Route exact path="/trail"
-              render={() => <Trail user={this.state.user} />}
-            />
-            <Route exact path="/usertrails"
-                render={() => <UserTrails user={this.state.user} />}
-              />
-            <Route path="/usertrails/:id"
-                render={() => <IndividTrail user={this.state.user} />}
-              />
+          <div>
+
+          <nav class="navbar navbar-expand-lg navbar-light bg-faded py-lg-4">
+            <div class="container">
+              <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="/">Trails</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav mx-auto">
+                  <li class="nav-item active px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="/"> Home
+                      <span class="sr-only"></span>
+                    </a></li>
+                      <li class="nav-item px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="/trail">  Search   </a>
+                      </li>
+                      <li class="nav-item px-lg-4">
+                    <a class="nav-link text-uppercase text-expanded" href="/UserTrails">  All Trails   </a>
+                      </li>
+                </ul>
+              </div>
             </div>
-        </Router>
+          </nav>
+          <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a class="nav-link text-uppercase " href="/"> <span class="glyphicon glyphicon-home"></span> Home </a>
+            <a href="/trail"><span class="glyphicon">&#xe003;</span> Search </a>
+            <a href="/UserTrails"><span class="glyphicon">&#xe008;</span>All Trails </a>
+          </div>
+        <div className='App'>
+          <UserProfile user={this.state.user} logout={this.logout} />
+          <Route exact path="/trail"
+            render={() => <Trail user={this.state.user} />}
+          />
+          <Route exact path="/usertrails"
+              render={() => <UserTrails user={this.state.user} />}
+            />
+          <Route path="/usertrails/:id"
+              render={() => <IndividTrail user={this.state.user} />}
+            />
+          </div>
+
+        </div>
+      </Router>
       );
     } else {
       return (
         <div className='App'>
-
           <div className='SignupBox'>
             <Signup lift={this.liftTokenToState} />
           </div>

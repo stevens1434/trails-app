@@ -84,14 +84,21 @@ class UserTrails extends Component {
     let user = this.props.user
     console.log("user: ", user);
       return (
-        <div className='userTrails'>
-          <p onClick={this.change}>UserTrails</p>
-          <UserTrailsList
-            user = {this.state.user}
-            records = {this.state.records}
-            handleDelete = {this.handleDelete}
-            viewDetails = {this.viewDetails}
-            />
+        <div onClick={this.change} className='userTrails'>
+          <div class="container-fluid">
+            <div class="row content">
+              <div  class="col-sm-12 well">
+                <div class="row">
+                  <UserTrailsList
+                    user = {this.state.user}
+                    records = {this.state.records}
+                    handleDelete = {this.handleDelete}
+                    viewDetails = {this.viewDetails}
+                    />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       );
     }

@@ -1,5 +1,26 @@
 body {
-  background-color: white;
+  background-color: #fcf8f4;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+span{
+  color: #FF9900;
+
+}
+h2{
+  color: black;
+}
+
+.row {
+  background-color: #e5e1d5;
+}
+
+.col-sm-12 {
+  background-color: rgba(0,0,0,0);
+}
+
+.linkto {
+  text-decoration: none;
 }
 
 .App {
@@ -19,4 +40,173 @@ body {
 .LogoutBox {
   background: lightred;
   padding: 0.5em;
+}
+
+.container, .navbar  {
+  background-color: #e5e1d5;
+  width: 100%;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    opacity: 0.85;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.side {
+  background-color: #e5e1d5;
+  height: 90%;
+  margin-left: 10px;
+}
+
+.brewwell {
+  height: 228px;
+  background-color: white;
+}
+
+.trailcard {
+  background-color: white;
+  height: 0 auto;
+  border: 1px solid #818181;
+  border-radius: 10px;
+  color: #3f5689;
+  font-family: 'Roboto', sans-serif;
+}
+
+.food{
+  min-height: 500px;
+  color: #FF2300;
+
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.text-white{
+  color: white;
+}
+.bg-1 {
+  background-color: #829595;
+  color: #ffffff;
+  }
+ .container-fluid {
+     padding-top: 70px;
+     padding-bottom: 70px;
+ }
+/*test*/
+
+
+
+h1, h2, h3, h4, h5, h6, .text-heading {
+  font-family: "Josefin Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+ul{
+  list-style-type: none;
+}
+h1 {
+  font-size: 4rem;
+}
+
+.tagline-upper {
+  font-size: 6rem;
+  font-weight: 750;
+  line-height: 1;
+  margin-top: 8px;
+  margin-bottom: 3px;
+ text-shadow: 4px 4px 3px black;
+ color: #FF2300;
+}
+.tagline-upper:hover {
+  margin-bottom: 3px;
+ text-shadow: 2px 2px 3px black;
+
+}
+
+.tagline-lower {
+  font-size: 1.4rem;
+  line-height: 1;
+  margin-bottom:8px;
+  font-weight: 750;
+  text-shadow: 4px 4px 3px black;
+  color: white;
+
+}
+
+
+.text-expanded {
+  letter-spacing: 5px;
+  margin-left: 26px;
+  margin-right: 16px;
+
+}
+
+.text-shadow {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.text-lg {
+  font-size: 1.25rem;
+}
+
+.bg-faded {
+  background-color: rgba(255, 255, 255, 0.9);
+
+}
+
+.bg-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding:  3px;
+}
+
+hr.divider {
+  border-color: #292b2c;
+  max-width: 250px;
+}
+
+.map-container iframe {
+  pointer-events: none;
+}
+
+.map-container iframe.clicked {
+  pointer-events: auto;
+}
+.card-img {
+  background-repeat: repeat;
+  background-size: cover;
+   transition: all .2s ease-in-out;
+}
+.card-img:hover{
+  transform: scale(1.3);
+  margin: auto 0;
 }

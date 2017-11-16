@@ -60,15 +60,18 @@ class UserTrailsList extends Component {
     let user = this.props.user
     let records = this.props.records
     let mappedItems = this.props.records.map((records, index) => (
-      <div key={index}>
-        <div className='col s2' data-key={index}>{records.name}</div>
-        <div className='col s2' data-key={index}>{records.city}</div>
-        <div className='col s2' data-key={index}>{records.state}</div>
-        <div className='col s4' data-key={index}>{records.lat}</div>
-        <div className='col s2' data-key={index}>{records.description}</div>
-        <button type="delete" data-key={index} value="delete" onClick={this.handDelete}>Delete</button>
-        <Link to={"/usertrails/" + records._id} params={records._id} data-key={index} value={records._id} onClick={this.handleView}>{records._id} View Details</Link>
-        <hr />
+      <div class="col-xs-6 col-sm-6 col-lg-4">
+        <div class="well trailcard" key={index}>
+          <div key={index}>
+            <Link class="linkto" to={"/usertrails/" + records._id} params={records._id} data-key={index} value={records._id} onClick={this.handleView}>
+              <div data-key={index}><h3>{records.name}</h3></div></Link>
+              <div data-key={index}>{records.city}</div>
+              <div data-key={index}>{records.state}</div><br/>
+              <div data-key={index}>{records.description}</div><br/>
+              <button type="delete" data-key={index} value="delete" onClick={this.handDelete}>Delete</button><br/><br/>
+            <hr />
+          </div>
+        </div>
       </div>
     ))
       return (
