@@ -48,7 +48,7 @@ class IndividTrailList extends Component {
     let user = this.props.user
     let records = this.props.records
     let mappedItems = this.props.records.map((records, index) => (
-      <ul class="nav nav-pills nav-stacked" key={index}>
+      <ul class="" key={index}>
         <p data-key={index}><h3>{records.name}</h3></p>
         <p data-key={index}>{records.city}</p>
         <p data-key={index}>{records.state}</p>

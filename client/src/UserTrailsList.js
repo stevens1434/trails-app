@@ -69,7 +69,6 @@ class UserTrailsList extends Component {
               <div data-key={index}>{records.state}</div><br/>
               <div data-key={index}>{records.description}</div><br/>
               <button type="delete" data-key={index} value="delete" onClick={this.handDelete}>Delete</button><br/><br/>
-            <hr />
           </div>
         </div>
       </div>
