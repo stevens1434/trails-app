@@ -85,10 +85,10 @@ class UserTrails extends Component {
     console.log("user: ", user);
       return (
         <div onClick={this.change} className='userTrails'>
-          <div class="container-fluid">
-            <div class="row content">
-              <div  class="col-sm-12 well">
-                <div class="row">
+          <div className="container-fluid">
+            <div className="row content">
+              <div  className="col-sm-12 well">
+                <div className="row">
                   <UserTrailsList
                     user = {this.state.user}
                     records = {this.state.records}

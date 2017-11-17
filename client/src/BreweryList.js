@@ -7,6 +7,7 @@ import {
 import './App.css';
 import axios from 'axios';
 var unirest = require('unirest');
+let records = [];
 
 class BreweryList extends Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class BreweryList extends Component {
       unique_id: '',
       lat: '',
       lon: '',
+      location: {},
       directions: '',
       description: '',
       activities: [],
@@ -39,20 +41,26 @@ class BreweryList extends Component {
   }
 
   componentDidMount() {
-    let records = this.props.records;
+    records = this.props.records;
+    let breweries = this.props.breweries;
+    let location = this.props.location;
     this.setState({
-      records: records
+      records: records,
+      breweries: breweries,
+      locaiton: location
     })
 }
 
   render() {
     let user = this.props.user
-    let records = this.props.records
+    records = this.props.records
     let breweries = this.props.breweries
     let mappedItems = this.props.breweries.map((breweries, index) => (
-          <div class="col-xs-6 col-sm-6 col-lg-4 brewcard">
-            <div class="well brewwell" key={index}>
-              <div className="brewName" data-key={index}><h3>{breweries.brewery.name}</h3></div>
+          <div className="col-xs-10 col-sm-5 col-lg-4 brewcard">
+            <div className="well brewwell" key={index}>
+              <div className="brewName" data-key={index}><h3>
+                  <a href={breweries.brewery.website}>{breweries.brewery.name}</a>
+                  </h3></div>
               <div data-key={index}>{breweries.streetAddress}</div>
               <div data-key={index}>{breweries.locality}</div>
               <div data-key={index}>{breweries.region}</div>
@@ -63,7 +71,7 @@ class BreweryList extends Component {
           </div>
     ))
       return (
-            <div class="row brews" onClick={this.change}>{mappedItems}</div>
+            <div className="row brews" onClick={this.change}>{mappedItems}</div>
       );
     }
 }

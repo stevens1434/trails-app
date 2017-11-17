@@ -67,22 +67,21 @@ class Traillist extends Component {
     let user = this.props.user
     let records = this.props.records
     let mappedItems = this.props.records.map((records, index) => (
-      <div key={index}>
-        <div className='col s2' data-key={index}>{records.name}</div>
-        <div className='col s2' data-key={index}>{records.city}</div>
-        <div className='col s2' data-key={index}>{records.state}</div>
-        <div className='col s4' data-key={index}>{records.lat}</div>
-        <div className='col s2' data-key={index}>{records.description}</div>
-        <button type="Submit" data-key={index} data-value={records} onClick={this.handleAdd}>Add To Trails</button>
-        <button type="delete" data-key={index} value="delete" onClick={this.handDelete}>Delete</button>
-        <hr />
+      <div className="col-xs-10 col-sm-5 col-lg-4 brewcard trailresult">
+        <div className="well trailwell trailresultwell" key={index}>
+          <div className='brewName' data-key={index}><h3>{records.name}</h3></div>
+          <div className='col s2' data-key={index}>{records.city}</div>
+          <div className='col s2' data-key={index}>{records.state}</div><br/>
+          <div className='col s2' data-key={index}>{records.description}</div> <br/><br/>
+          <button className="btn btn-primary dropdown-toggle butbot" type="Submit" data-key={index} data-value={records} onClick={this.handleAdd}>Add To Trails</button>
+          <button className="btn btn-primary dropdown-toggle butbot" type="delete" data-key={index} value="delete" onClick={this.handDelete}>Delete</button>
+        </div>
       </div>
     ))
       return (
         <div className='trail'>
           <div>
-            <h3 onClick={this.change}>here is the traillist</h3>
-            <p>{mappedItems}</p>
+            <p onClick={this.change}>{mappedItems}</p>
           </div>
         </div>
       );

@@ -4,7 +4,8 @@ import './App.css';
 import axios from 'axios';
 import IndividTrailList from './IndividTrailList';
 import BreweryList from './BreweryList';
-// import { GoogleMapLoader, GoogleMap, DirectionsRenderer, google } from "react-google-maps";
+import { GoogleMapLoader, GoogleMap, DirectionsRenderer } from "react-google-maps";
+let breweries;
 
 export default class Map extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ export default class Map extends Component {
       lat: '',
       lon: '',
       location: {},
+      locate: {},
       city: '',
       state: '',
       country: '',
@@ -42,6 +44,7 @@ export default class Map extends Component {
 
   componentDidMount() {
       let user = this.props.user;
+      let locate = this.props.location;
       let a = this.props;
       let b = this;
       let refs = this.refs;
@@ -49,33 +52,75 @@ export default class Map extends Component {
         let location = a.location
         let lat = a.location.lat;
         let lon = a.location.lon;
+        breweries = a.breweries
           b.setState({
             user: user,
             lat: lat,
             lon: lon,
-            location: location
+            location: location,
+            locate: locate,
+            breweries: breweries
           })
-        new google.maps.Map(refs.map, {
+        let map = new google.maps.Map(refs.map, {
           center: {
             lat: lat,
             lng: lon
           },
-          zoom: 8
-        });
-    }, 1500);
+          zoom: 10,
+          title: 'example title'
+        })
+        for (var i = 0; i < breweries.length; i++) {
+          let brewLat = breweries[i].latitude;
+          let brewLon = breweries[i].longitude;
+          let key = i;
+          let name = breweries[i].brewery.name
+          let description = breweries[i].brewery.description
+          let website = breweries[i].website
+          console.log("brewery name in map.js: ", name);
+          console.log("breweries.length: ", breweries.length);
+          console.log('brewLat: ', brewLat);
+          console.log('brewLon: ', brewLon);
+          let marker = new google.maps.Marker({
+            position: {
+              lat: brewLat,
+              lng: brewLon
+            },
+            label: key[i],
+            icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FE7569',
+            map: map
+          })
+          let info;
+          let infoWindow = new google.maps.InfoWindow({
+            content: name
+          });
+          let listener = google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+              infoWindow.setContent(name);
+              infoWindow.open(map, marker);
+            }
+          })(marker, i));
+        }
+        let mark = new google.maps.Marker({
+          position: {
+            lat: lat,
+            lng: lon
+          },
+          icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
+          map: map
+        })
+    }, 3000);
   }
 
 
   render() {
     let user = this.props.user
+    breweries = this.props.breweries;
+    console.log('breweries in render in map.js: ', breweries);
       return (
-        <div>
-          <h2 onClick={this.change}>TheMap</h2>
-          <button>Go to place</button>
-          <div ref='map' style={{width: 500, height: 500, border: '1px solid black'}}>
-            <pre>{JSON.stringify(this.props.location, null, 2)}</pre>
-          </div>
-        </div>
+            <div onClick={this.change} className='mapitem mapmap' ref='map'>
+              <pre>{JSON.stringify(this.props.location, null, 2)}</pre>
+              <div className='mapMarker' ref='marker'></div>
+            </div>
       )
     }
 }

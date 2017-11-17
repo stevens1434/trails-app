@@ -12,8 +12,7 @@ class UserProfile extends Component {
   render() {
     return (
       <div className='UserProfileBox'>
-        <p>Hello, {this.props.user.name}!</p>
-        <a onClick={this.props.logout}>Logout</a>
+
       </div>
     );
   }

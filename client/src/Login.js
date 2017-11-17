@@ -33,11 +33,30 @@ class Login extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        Email: <input type='text' value={this.state.email} onChange={this.handleEmailChange} /><br />
-        Password: <input type='password' value={this.state.password} onChange={this.handlePasswordChange} /><br />
-        <input type='submit' value='Log in' />
-      </form>
+      <section className="login">
+        <div className="container">
+        	<div className="row">
+        	    <div className="col-xs-12">
+            	    <div className="form-wrap">
+                    <h1>Log in with your email account</h1>
+                        <form onSubmit={this.handleSubmit} role="form">
+                            <div className="form-group">
+                                <label for="email" class="sr-only">Email</label>
+                                <input type='text' id="email" value={this.state.email} onChange={this.handleEmailChange} placeholder="Email"/>
+                            </div>
+                            <div className="form-group">
+                                <label for="key" className="sr-only">Password</label>
+                                <input type='password' value={this.state.password} onChange={this.handlePasswordChange} placeholder="Password"/>
+                            </div>
+                            <input type="submit" id="btn-login" className="btn btn-custom btn-lg btn-block" value="Log in"/>
+                        </form>
+                        <a href="#" className="forget" data-toggle="modal" data-target=".forget-modal">Forgot your password?</a>
+                        <hr/>
+            	    </div>
+        		</div>
+        	</div>
+        </div>
+      </section>
     );
   }
 }

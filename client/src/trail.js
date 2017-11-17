@@ -136,20 +136,23 @@ class Trail extends Component {
   render() {
     let user = this.props.user
       return (
-        <div className='trail'>
-          <p onClick={this.change}>Trails</p>
-          <Trailapi
-            updateState={this.updateState}
-            records = {this.state.records}
-            stateChangeActivity = {this.stateChangeActivity}
-            stateChangeState = {this.stateChangeState}
-            stateChangeCity = {this.stateChangeCity}
-            />
-            <Traillist
+        <div className='trail container-fluid'>
+          <div className='row content right'>
+            <p onClick={this.change}>Trails</p>
+            <Trailapi
+              updateState={this.updateState}
               records = {this.state.records}
-              handleDelete = {this.handleDelete}
-              addToDatabase = {this.addToDatabase}
+              stateChangeActivity = {this.stateChangeActivity}
+              stateChangeState = {this.stateChangeState}
+              stateChangeCity = {this.stateChangeCity}
               />
+              <hr />
+              <Traillist
+                records = {this.state.records}
+                handleDelete = {this.handleDelete}
+                addToDatabase = {this.addToDatabase}
+                />
+          </div>
         </div>
       );
     }

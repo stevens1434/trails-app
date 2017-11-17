@@ -91,9 +91,6 @@ class IndividTrail extends Component {
             location.lon = response.lon,
             lat = response.lat,
             lon = response.lon,
-            // this.setState({
-            //   location: location
-            // })
           ))
       .then(response =>
         axios.post('/UserTrail/getbrews', {
@@ -109,37 +106,37 @@ class IndividTrail extends Component {
 
   render() {
     let user = this.props.user
-    // location = {}
-    lon += 0;
-    lat += 0;
     location.lon = lon;
     location.lat = lat;
-    console.log("lon in individ render: ", lon, "lat in individ render: ", lat);
-    console.log("location in individTrail render: ", location);
+    let locat = location
+    // console.log("lon in individ render: ", lon, "lat in individ render: ", lat);
+    // console.log("location in individTrail render: ", location);
       return (
-          <div class="container-fluid">
-            <div class="row content">
-              <div  class="col-sm-3 well side">
-
-                <h2 onClick={this.change}>Your Park</h2>
+          <div className="container-fluid">
+            <div className="row content mapAndTrail">
+              <div onClick={this.change} className="col-xs-10 col-sm-10 col-md-6 col-lg-6 col-xl-6 well side park">
                 <IndividTrailList
                   user = {this.state.user}
                   records = {this.state.records}
                   />
               </div>
-              <div class='col-sm-3 well side map'>
+              <div className='col-xs-10 col-sm-10 col-md-6 col-lg-6 col-xl-6 well side map'>
                 <Map
                   location = {location}
                   user = {this.state.user}
+                  breweries = {this.state.breweries}
                   />
               </div>
-              <div class="col-sm-8">
+            </div>
+            <div className='row content right'>
+              <div className="col-sm-12">
                 <BreweryList
+                  location = {location}
                   user = {this.state.user}
                   records = {this.state.records}
                   breweries = {this.state.breweries}
                   />
-                  </div>
+              </div>
             </div>
           </div>
 

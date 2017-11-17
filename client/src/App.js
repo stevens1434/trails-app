@@ -65,68 +65,95 @@ class App extends Component {
   }
 
   render() {
-    var theUser = this.state.user
+    // var theUser = this.state.user
     // console.log('theUser: ', theUser);
     if (typeof this.state.user === 'object' && Object.keys(this.state.user).length !== 0) {
       return (
         <Router>
           <div>
-
-          <nav class="navbar navbar-expand-lg navbar-light bg-faded py-lg-4">
-            <div class="container">
-              <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="/">Trails</a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav mx-auto">
-                  <li class="nav-item active px-lg-4">
-                    <a class="nav-link text-uppercase text-expanded" href="/"> Home
-                      <span class="sr-only"></span>
+          <nav className="navbar navbar-expand-lg navbar-light bg-faded py-lg-4">
+            <div className="container">
+              <img src='http://res.cloudinary.com/stevens1434/image/upload/v1510878793/Menu_icon-128_ad6fhn.png' className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"></img>
+              <a className="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="/">Trails</a>
+              <div className="collapse navbar-collapse" id="navbarResponsive">
+                <ul className="navbar-nav mx-auto">
+                  <li className="nav-item active px-lg-4">
+                    <a className="nav-link text-uppercase text-expanded" href="/"> Home
+                      <span className="sr-only"></span>
                     </a></li>
-                      <li class="nav-item px-lg-4">
-                    <a class="nav-link text-uppercase text-expanded" href="/trail">  Search   </a>
+                      <li className="nav-item px-lg-4">
+                        <a className="nav-link text-uppercase text-expanded" href="/trail">  Search   </a>
                       </li>
-                      <li class="nav-item px-lg-4">
-                    <a class="nav-link text-uppercase text-expanded" href="/UserTrails">  All Trails   </a>
+                      <li className="nav-item px-lg-4">
+                        <a className="nav-link text-uppercase text-expanded" href="/UserTrails">All Trails</a>
                       </li>
+                  <li className="nav-item active px-lg-4 navfloat">
+                      <p className="nav-link text-uppercase text-expanded" href="/"> Hello, {this.state.user.name}
+                        <span className="sr-only"></span>
+                      </p>
+                    </li>
+                  <li className="nav-item active px-lg-4 navfloat">
+                    <a className="nav-link text-uppercase text-expanded" onClick={this.logout}> Logout
+                      <span className="sr-only"></span>
+                    </a>
+                  </li>
                 </ul>
               </div>
             </div>
           </nav>
-          <div id="mySidenav" class="sidenav">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a class="nav-link text-uppercase " href="/"> <span class="glyphicon glyphicon-home"></span> Home </a>
-            <a href="/trail"><span class="glyphicon">&#xe003;</span> Search </a>
-            <a href="/UserTrails"><span class="glyphicon">&#xe008;</span>All Trails </a>
+          <div id="mySidenav" className="sidenav">
+            <img src='http://res.cloudinary.com/stevens1434/image/upload/v1510878793/Menu_icon-128_ad6fhn.png' className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"></img>
+            <a href="javascript:void(0)" className="closebtn" onClick="closeNav()">&times;</a>
+            <a className="nav-link text-uppercase " href="/"> <span className="glyphicon glyphicon-home"></span> Home </a>
+            <a href="/trail"><span className="glyphicon">&#xe003;</span> Search </a>
+            <a href="/UserTrails"><span className="glyphicon">&#xe008;</span>All Trails</a>
           </div>
-        <div className='App'>
-          <UserProfile user={this.state.user} logout={this.logout} />
-          <Route exact path="/trail"
-            render={() => <Trail user={this.state.user} />}
-          />
-          <Route exact path="/usertrails"
-              render={() => <UserTrails user={this.state.user} />}
+          <div className='App'>
+            <UserProfile user={this.state.user} logout={this.logout} />
+            <Route className='Application' exact path="/trail"
+              render={() => <Trail user={this.state.user} />}
             />
-          <Route path="/usertrails/:id"
-              render={() => <IndividTrail user={this.state.user} />}
-            />
+            <Route className='Application' exact path="/usertrails"
+                render={() => <UserTrails user={this.state.user} />}
+              />
+            <Route className='Application' path="/usertrails/:id"
+                render={() => <IndividTrail user={this.state.user} />}
+              />
+            </div>
           </div>
-
-        </div>
-      </Router>
+        </Router>
       );
     } else {
       return (
-        <div className='App'>
-          <div className='SignupBox'>
-            <Signup lift={this.liftTokenToState} />
+        <div>
+          <nav className="navbar navbar-expand-lg navbar-light bg-faded py-lg-4">
+            <div className="container">
+              <img src='http://res.cloudinary.com/stevens1434/image/upload/v1510878793/Menu_icon-128_ad6fhn.png' className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"></img>
+              <a className="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="/">Trails</a>
+              <div className="collapse navbar-collapse" id="navbarResponsive">
+                <ul className="navbar-nav mx-auto">
+                  <li className="nav-item active px-lg-4">
+                    <a className="nav-link text-uppercase text-expanded" href="/"> Home
+                      <span className="sr-only"></span>
+                    </a></li>
+                  <li className="nav-item px-lg-4">
+                    <a className="nav-link text-uppercase text-expanded" href="/trail">  Search   </a>
+                  </li>
+                  <li className="nav-item px-lg-4">
+                    <a className="nav-link text-uppercase text-expanded" href="/UserTrails">All Trails</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+          <div className='App'>
+            <div className='SignupBox'>
+              <Signup lift={this.liftTokenToState} />
+            </div>
+            <div className='LoginBox'>
+              <Login lift={this.liftTokenToState} />
+            </div>
           </div>
-
-          <div className='LoginBox'>
-            <Login lift={this.liftTokenToState} />
-          </div>
-
         </div>
       );
     }

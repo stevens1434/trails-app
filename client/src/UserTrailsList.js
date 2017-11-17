@@ -60,11 +60,11 @@ class UserTrailsList extends Component {
     let user = this.props.user
     let records = this.props.records
     let mappedItems = this.props.records.map((records, index) => (
-      <div class="col-xs-6 col-sm-6 col-lg-4">
-        <div class="well trailcard" key={index}>
+      <div className="col-xs-12 col-sm-6 col-lg-4 trailCardHolder">
+        <div className="well trailcard" key={index}>
           <div key={index}>
-            <Link class="linkto" to={"/usertrails/" + records._id} params={records._id} data-key={index} value={records._id} onClick={this.handleView}>
-              <div data-key={index}><h3>{records.name}</h3></div></Link>
+            <Link className="linkto" to={"/usertrails/" + records._id} params={records._id} data-key={index} value={records._id} onClick={this.handleView}>
+              <div data-key={index}><h3>{records.name}</h3></div></Link> <hr />
               <div data-key={index}>{records.city}</div>
               <div data-key={index}>{records.state}</div><br/>
               <div data-key={index}>{records.description}</div><br/>
@@ -75,10 +75,7 @@ class UserTrailsList extends Component {
     ))
       return (
         <div className='trail'>
-          <div>
-            <h3 onClick={this.change}>UserTrailsList</h3>
-            <p>{mappedItems}</p>
-          </div>
+          <p className='trailTitle' onClick={this.change}>{mappedItems}</p>
         </div>
       );
     }
