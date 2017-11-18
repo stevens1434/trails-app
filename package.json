@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node server/server.js || PORT=3001 node ./bin/www"
+
+     "start": "cross-env NODE_ENV=production MONGO_URL=yourMongoURL node index.js"
   },
   "dependencies": {
     "bcrypt": "^1.0.3",
