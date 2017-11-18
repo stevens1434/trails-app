@@ -42,6 +42,10 @@ app.use('/auth', auth);
 app.use('/trail', trail);
 app.use('/usertrail', usertrail);
 
+app.listen(process.env.PORT || 8080, function() {
+  console.log('Express server is up and running!');
+});
+
 // catch 404 and forward to error handler - commented out
 // app.use(function(req, res, next) {
 //   var err = new Error('Not Found');
