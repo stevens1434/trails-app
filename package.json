@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
 
-     "start": "MONGO_URL=mongodb://heroku_lg38msfj:j1d43i2t8n9nhcmue1kh7pemkh@ds113636.mlab.com:13636/heroku_lg38msfj node app.js"
+     "start": "node app.js"
   },
   "dependencies": {
     "bcrypt": "^1.0.3",
