@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "PORT=3001 node ./bin/www"
+    "start": "node server/server.js || PORT=3001 node ./bin/www"
   },
   "dependencies": {
     "bcrypt": "^1.0.3",

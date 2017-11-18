@@ -45,7 +45,7 @@ class Signup extends Component {
         	<div className="row login2">
         	 <div className="col-xs-12 login2">
         	   <div className="form-wrap login2">
-               <h1>Log in with your email account</h1>
+               <h1>Sign Up</h1>
                  <form onSubmit={this.handleSubmit} role="form">
                    <div className="form-group">
                     <label for="name" class="sr-only">Name</label>

@@ -38,7 +38,7 @@ class Login extends Component {
         	<div className="row">
         	    <div className="col-xs-12">
             	    <div className="form-wrap">
-                    <h1>Log in with your email account</h1>
+                    <h1>Log in</h1>
                         <form onSubmit={this.handleSubmit} role="form">
                             <div className="form-group">
                                 <label for="email" class="sr-only">Email</label>
