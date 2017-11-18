@@ -6,7 +6,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 require('dotenv').config();
-var PORT = 'mongodb://heroku_lg38msfj:j1d43i2t8n9nhcmue1kh7pemkh@ds113636.mlab.com:13636/heroku_lg38msfj'
+var PORT = mongodb://heroku_lg38msfj:j1d43i2t8n9nhcmue1kh7pemkh@ds113636.mlab.com:13636/heroku_lg38msfj
 
 // Mongoose stuff
 var mongoose = require('mongoose');
