@@ -74,6 +74,7 @@ class Trail extends Component {
     let state = this.state.state;
     let city = this.state.city;
     let activity = this.state.activities_name;
+    console.log("activities in trail.js: ", this.state.activities);
     let params;
     if (activity !== '' && city === '' && state === '') {
       params = 'q[activities_activity_type_name_eq]='+activity
