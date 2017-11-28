@@ -82,26 +82,26 @@ class Trailapi extends Component {
               <label for='state'></label>
               <input className="form-control" id='state' type="text" name="state" placeholder='Choose State...' onChange={this.handleState}/>
               <div className='dropdown'>
-              <br />
-              <button className="btn btn-primary dropdown-toggle dropdown-menu-center" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Activities
-              <span class="caret"></span></button>
-              <br />
-              <ul  onChange={this.handleActivity} className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <li className="dropdown-item" href="#">Hiking</li>
-                <li className="dropdown-item" href="#">Mountain Biking</li>
-                <li className="dropdown-item" href="#">Camping</li>
-                <li className="dropdown-item" href="#">Caving</li>
-                <li className="dropdown-item" href="#">Trail Running</li>
-                <li className="dropdown-item" href="#">Snow Sports</li>
-                <li className="dropdown-item" href="#">Horseback Riding</li>
-                <li className="dropdown-item" href="#">ATV</li>
-                <li className="dropdown-item" href="#">Water Sports</li>
-              </ul>
-              <br />
-              </div>
+                <br />
+                <button className="btn btn-primary dropdown-toggle dropdown-menu-center" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Activities
+                <span class="caret"></span></button>
+                <br />
+                <ul  onChange={this.handleActivity} className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <li className="dropdown-item" href="#">Hiking</li>
+                  <li className="dropdown-item" href="#">Mountain Biking</li>
+                  <li className="dropdown-item" href="#">Camping</li>
+                  <li className="dropdown-item" href="#">Caving</li>
+                  <li className="dropdown-item" href="#">Trail Running</li>
+                  <li className="dropdown-item" href="#">Snow Sports</li>
+                  <li className="dropdown-item" href="#">Horseback Riding</li>
+                  <li className="dropdown-item" href="#">ATV</li>
+                  <li className="dropdown-item" href="#">Water Sports</li>
+                </ul>
+                <br />
+                </div>
                 <button className='btn btn-primary submit' type="submit" name="submit" onClick={this.search}>Submit</button>
-              </div>
+            </div>
           </form>
         </div>
       );

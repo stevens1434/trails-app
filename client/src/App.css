@@ -121,7 +121,7 @@ h2{
 }
 
 .form-group {
-  /*display: inline-block;*/
+  display: inline-block;
   text-align: center;
   margin-left: 40px;
   margin-right: 40px;
@@ -170,6 +170,11 @@ h2{
 }
 .dropdown-menu > li:hover {
   color: rgb(24, 69, 59);
+}
+
+.trailapi {
+  display: inline-block;
+  text-align: center;
 }
 
 @media (max-width: 575px) {

@@ -143,15 +143,17 @@ class Trail extends Component {
       return (
         <div className='trail container-fluid'>
           <div className='row content right'>
-            <p onClick={this.change}>Trails</p>
-            <Trailapi
-              updateState={this.updateState}
-              records = {this.state.records}
-              stateChangeActivity = {this.stateChangeActivity}
-              stateChangeState = {this.stateChangeState}
-              stateChangeCity = {this.stateChangeCity}
-              />
-              <hr />
+            <h1 onClick={this.change}>Search</h1>
+              <div className='col-xs-10 col-sm-10 col-md-6 col-lg-6 col-xl-6 well side map trailapi'>
+                <Trailapi
+                  updateState={this.updateState}
+                  records = {this.state.records}
+                  stateChangeActivity = {this.stateChangeActivity}
+                  stateChangeState = {this.stateChangeState}
+                  stateChangeCity = {this.stateChangeCity}
+                  />
+                  <hr />
+                </div>
               <div className='col-xs-10 col-sm-10 col-md-6 col-lg-6 col-xl-6 well side map'>
                 <SearchMap
                   records = {this.state.records}

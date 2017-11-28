@@ -104,8 +104,8 @@ export default class SearchMap extends Component {
         }
         let mark = new google.maps.Marker({
           position: {
-            lat: record[0].lat,
-            lng: record[0].lon
+            lat: record[1].lat,
+            lng: record[1].lon
           },
           icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
           map: map
