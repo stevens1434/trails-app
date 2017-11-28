@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import './App.css';
 import Trailapi from './trailapi';
 import Traillist from './traillist';
+import SearchMap from './SearchMap';
 import axios from 'axios';
 var unirest = require('unirest');
 var jQuery = require('jquery');
 require('dotenv').config();
 let trailKey;
+let location = {};
 
 class Trail extends Component {
   constructor(props) {
@@ -14,6 +16,7 @@ class Trail extends Component {
     this.state = {
       user: {},
       records: [],
+      location: {},
       city: '',
       state: '',
       country: '',
@@ -122,7 +125,8 @@ class Trail extends Component {
   componentDidMount() {
     let user = this.props.user;
     this.setState({
-      user: user
+      user: user,
+      location: {lat: 47.6062, lon: -122.3321}
     })
     axios.get('trail/key', {
       data: trailKey
@@ -147,12 +151,20 @@ class Trail extends Component {
               stateChangeCity = {this.stateChangeCity}
               />
               <hr />
-              <Traillist
-                records = {this.state.records}
-                handleDelete = {this.handleDelete}
-                addToDatabase = {this.addToDatabase}
-                />
-          </div>
+              <div className='col-xs-10 col-sm-10 col-md-6 col-lg-6 col-xl-6 well side map'>
+                <SearchMap
+                  records = {this.state.records}
+                  user = {this.state.user}
+                  location = {this.state.location}
+                  />
+              </div>
+            </div>
+            <hr />
+            <Traillist
+              records = {this.state.records}
+              handleDelete = {this.handleDelete}
+              addToDatabase = {this.addToDatabase}
+              />
         </div>
       );
     }

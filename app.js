@@ -9,8 +9,8 @@ require('dotenv').config();
 
 // Mongoose stuff
 var mongoose = require('mongoose');
-// mongoose.connect('mongodb://localhost/trails-app', { useMongoClient: true });
-mongoose.connect(process.env.MONGODB_URI, {useMongoClient: true});
+mongoose.connect('mongodb://localhost/trails-app', { useMongoClient: true });
+// mongoose.connect(process.env.MONGODB_URI, {useMongoClient: true});
 
 var User = require('./models/user');
 var Trail = require('./models/trail');
@@ -28,8 +28,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.resolve(__dirname, 'client', 'build')));
+app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.resolve(__dirname, 'client', 'build'))); //USE FOR
 
 app.use(function(req, res, next) {
   // before every route, attach the flash messages and current user to res.locals
