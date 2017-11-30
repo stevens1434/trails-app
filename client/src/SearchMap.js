@@ -55,13 +55,6 @@ export default class SearchMap extends Component {
       let record = records;
       let lat = locate.lat;
       let lon = locate.lon;
-        // b.setState({
-        //   user: user,
-        //   location: locate,
-        //   locate: locate,
-        //   lat: locate.lat,
-        //   lon: locate.lon,
-        // })
       if (records.length !== 0) {
         console.log("records.length !== 0");
         let map = new google.maps.Map(refs.map, {
@@ -104,8 +97,8 @@ export default class SearchMap extends Component {
         }
         let mark = new google.maps.Marker({
           position: {
-            lat: record[1].lat,
-            lng: record[1].lon
+            lat: record[0].lat,
+            lng: record[0].lon
           },
           icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
           map: map
