@@ -44,7 +44,7 @@ app.use('/trail', trail);
 app.use('/usertrail', usertrail);
 // for heroku deployment
 app.get('*', function(req, res, next) {
-	res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+	res.sendFile(path.resolve(__dirname, 'client', 'build', 'app.js'));
 });
 
 // app.listen(process.env.PORT || 8080, function() {
