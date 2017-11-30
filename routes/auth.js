@@ -9,9 +9,10 @@ var expressJWT = require('express-jwt');
 var jwt = require('jsonwebtoken');
 
 // GET /auth/login route
-router.get('/login', function(req, res, next) {
-  res.send('GET /auth/login route hit')
-});
+// commmented out for Heroku
+// router.get('/login', function(req, res, next) {
+//   res.send('GET /auth/login route hit')
+// });
 
 // POST /auth/login route - returns a JWT
 router.post('/login', function(req, res, next) {
@@ -43,9 +44,10 @@ router.post('/login', function(req, res, next) {
 });
 
 /* GET /auth/signup route */
-router.get('/signup', function(req, res, next) {
-  res.send('GET /auth/signup route hit');
-});
+//commented out for Heroku
+// router.get('/signup', function(req, res, next) {
+//   res.send('GET /auth/signup route hit');
+// });
 
 /* POST /auth/signup route */
 router.post('/signup', function(req, res, next) {

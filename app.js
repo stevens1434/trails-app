@@ -9,8 +9,8 @@ require('dotenv').config();
 
 // Mongoose stuff
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/trails-app', { useMongoClient: true });
-// mongoose.connect(process.env.MONGODB_URI, {useMongoClient: true});
+// mongoose.connect('mongodb://localhost/trails-app', { useMongoClient: true }); //commented out for heroku
+mongoose.connect(process.env.MONGODB_URI, {useMongoClient: true}); // for heroku deployment
 
 var User = require('./models/user');
 var Trail = require('./models/trail');
@@ -28,8 +28,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-// app.use(express.static(path.resolve(__dirname, 'client', 'build'))); //USE FOR
+// app.use(express.static(path.join(__dirname, 'public'))); //commented out for heroku
+app.use(express.static(path.resolve(__dirname, 'client', 'build'))); //for heroku deployment
 
 app.use(function(req, res, next) {
   // before every route, attach the flash messages and current user to res.locals
@@ -37,11 +37,15 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use('/', index);
+// app.use('/', index); //commented out for Heroku
 app.use('/users', users);
 app.use('/auth', auth);
 app.use('/trail', trail);
 app.use('/usertrail', usertrail);
+// for heroku deployment
+app.get('*', function(req, res, next) {
+	res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+});
 
 // app.listen(process.env.PORT || 8080, function() {
 //   console.log('Express server is up and running!');
