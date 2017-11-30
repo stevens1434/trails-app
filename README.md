@@ -5,18 +5,15 @@ It also gives additional information on your movie based on IMDB information.
 
 ## Screenshots
 
-### Homepage
-![Alt text](http://res.cloudinary.com/stevens1434/image/upload/v1507626895/home-screen_mvvxpk.png)
+### Search For Activities
+![Alt text](http://res.cloudinary.com/stevens1434/image/upload/v1512072337/TRAILS_-_search_page_kl4t48.png)
 
-### Movie search
-![Alt text](http://res.cloudinary.com/stevens1434/image/upload/v1507626893/search_wz95ws.png)
+### View All Saved Activities By User
+![Alt text](http://res.cloudinary.com/stevens1434/image/upload/v1512072337/TRAILS_-_all_trails_page_adzoye.png)
 
-### Search Results
-![Alt text](http://res.cloudinary.com/stevens1434/image/upload/v1507626897/results_n7rbws.png)
+### View Specific Saved Activity With Map Of Breweries
+![Alt text](http://res.cloudinary.com/stevens1434/image/upload/v1512072337/Trails_-_Specific_Hike_auyfpl.png)
 
-### All Movies
-
-![Alt text](http://res.cloudinary.com/stevens1434/image/upload/v1507626893/all-movies_bihg76.png)
 ## Technologies Used
 
 - HTML
