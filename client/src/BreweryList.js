@@ -8,6 +8,7 @@ import './App.css';
 import axios from 'axios';
 var unirest = require('unirest');
 let records = [];
+let mappedItems;
 
 class BreweryList extends Component {
   constructor(props) {
@@ -55,21 +56,31 @@ class BreweryList extends Component {
     let user = this.props.user
     records = this.props.records
     let breweries = this.props.breweries
-    let mappedItems = this.props.breweries.map((breweries, index) => (
-          <div className="col-xs-10 col-sm-5 col-lg-4 brewcard">
-            <div className="well brewwell" key={index}>
-              <div className="brewName" data-key={index}><h3>
-                  <a href={breweries.brewery.website}>{breweries.brewery.name}</a>
-                  </h3></div>
-              <div data-key={index}>{breweries.streetAddress}</div>
-              <div data-key={index}>{breweries.locality}</div>
-              <div data-key={index}>{breweries.region}</div>
-              <div data-key={index}>Phone: {breweries.phone}</div>
-              <div data-key={index}>Distance from Hike: {breweries.distance} Miles</div>
-              <div data-key={index}>Type: {breweries.locationTypeDisplay}</div>
+    console.log("breweries in brewerylist render: ", breweries);
+    if (this.props.breweries === undefined || this.props.breweries === []) {
+      mappedItems =
+      <div className="col-xs-10 col-sm-5 col-lg-4 brewcard">
+        <div className="well brewwell">
+          <div className="brewName"><h3>No Breweries Found</h3></div>
+        </div>
+      </div>;
+    } else {
+      mappedItems = this.props.breweries.map((breweries, index) => (
+            <div className="col-xs-10 col-sm-5 col-lg-4 brewcard">
+              <div className="well brewwell" key={index}>
+                <div className="brewName" data-key={index}><h3>
+                    <a href={breweries.brewery.website}>{breweries.brewery.name}</a>
+                    </h3></div>
+                <div data-key={index}>{breweries.streetAddress}</div>
+                <div data-key={index}>{breweries.locality}</div>
+                <div data-key={index}>{breweries.region}</div>
+                <div data-key={index}>Phone: {breweries.phone}</div>
+                <div data-key={index}>Distance from Hike: {breweries.distance} Miles</div>
+                <div data-key={index}>Type: {breweries.locationTypeDisplay}</div>
+              </div>
             </div>
-          </div>
-    ))
+      ))
+    }
       return (
             <div className="row brews" onClick={this.change}>{mappedItems}</div>
       );

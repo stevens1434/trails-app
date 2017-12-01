@@ -35,6 +35,7 @@ router.get('/id/:id', function(req, res, next){
       _id: listingId
     }, function(err, listing){
         if(err) return res.send(err);
+        console.log("listing in UserTrail.js Route: ", listing);
         res.send(listing);
       })
   });

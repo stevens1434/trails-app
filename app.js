@@ -9,8 +9,8 @@ require('dotenv').config();
 
 // Mongoose stuff
 var mongoose = require('mongoose');
-// mongoose.connect('mongodb://localhost/trails-app', { useMongoClient: true }); //commented out for heroku
-mongoose.connect(process.env.MONGODB_URI, {useMongoClient: true});  // for heroku deployment
+mongoose.connect('mongodb://localhost/trails-app', { useMongoClient: true }); //commented out for heroku
+// mongoose.connect(process.env.MONGODB_URI, {useMongoClient: true});  // for heroku deployment
 
 var User = require('./models/user');
 var Trail = require('./models/trail');

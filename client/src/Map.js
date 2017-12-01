@@ -53,6 +53,9 @@ export default class Map extends Component {
         let lat = a.location.lat;
         let lon = a.location.lon;
         breweries = a.breweries
+        console.log("breweries in Map.js: ", breweries);
+        // if (breweries === undefined) {
+
           b.setState({
             user: user,
             lat: lat,
@@ -61,54 +64,54 @@ export default class Map extends Component {
             locate: locate,
             breweries: breweries
           })
-        let map = new google.maps.Map(refs.map, {
-          center: {
-            lat: lat,
-            lng: lon
-          },
-          zoom: 10,
-          title: 'example title'
-        })
-        for (var i = 0; i < breweries.length; i++) {
-          let brewLat = breweries[i].latitude;
-          let brewLon = breweries[i].longitude;
-          let key = i;
-          let name = breweries[i].brewery.name
-          let description = breweries[i].brewery.description
-          let website = breweries[i].website
-          console.log("brewery name in map.js: ", name);
-          console.log("breweries.length: ", breweries.length);
-          console.log('brewLat: ', brewLat);
-          console.log('brewLon: ', brewLon);
-          let marker = new google.maps.Marker({
-            position: {
-              lat: brewLat,
-              lng: brewLon
+          let map = new google.maps.Map(refs.map, {
+            center: {
+              lat: lat,
+              lng: lon
             },
-            label: key[i],
-            icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FE7569',
+            zoom: 10,
+            title: 'example title'
+          })
+          for (var i = 0; i < breweries.length; i++) {
+            let brewLat = breweries[i].latitude;
+            let brewLon = breweries[i].longitude;
+            let key = i;
+            let name = breweries[i].brewery.name
+            let description = breweries[i].brewery.description
+            let website = breweries[i].website
+            console.log("brewery name in map.js: ", name);
+            console.log("breweries.length: ", breweries.length);
+            console.log('brewLat: ', brewLat);
+            console.log('brewLon: ', brewLon);
+            let marker = new google.maps.Marker({
+              position: {
+                lat: brewLat,
+                lng: brewLon
+              },
+              label: key[i],
+              icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FE7569',
+              map: map
+            })
+            let info;
+            let infoWindow = new google.maps.InfoWindow({
+              content: name
+            });
+            let listener = google.maps.event.addListener(marker, 'click', (function(marker, i) {
+              return function() {
+                infoWindow.setContent(name);
+                infoWindow.open(map, marker);
+              }
+            })(marker, i));
+          }
+          let mark = new google.maps.Marker({
+            position: {
+              lat: lat,
+              lng: lon
+            },
+            icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
             map: map
           })
-          let info;
-          let infoWindow = new google.maps.InfoWindow({
-            content: name
-          });
-          let listener = google.maps.event.addListener(marker, 'click', (function(marker, i) {
-            return function() {
-              infoWindow.setContent(name);
-              infoWindow.open(map, marker);
-            }
-          })(marker, i));
-        }
-        let mark = new google.maps.Marker({
-          position: {
-            lat: lat,
-            lng: lon
-          },
-          icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
-          map: map
-        })
-    }, 3000);
+      }, 3000);
   }
 
 
