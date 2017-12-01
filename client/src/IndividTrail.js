@@ -128,6 +128,7 @@ class IndividTrail extends Component {
                   />
               </div>
             </div>
+            <hr />
             <div className='row content right'>
               <div className="col-sm-12">
                 <BreweryList
