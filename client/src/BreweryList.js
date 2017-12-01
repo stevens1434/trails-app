@@ -59,7 +59,7 @@ class BreweryList extends Component {
     console.log("breweries in brewerylist render: ", breweries);
     if (this.props.breweries === undefined || this.props.breweries === []) {
       mappedItems =
-      <br><div className="col-xs-10 col-sm-5 col-lg-4 brewcard">
+      <br/><div className="col-xs-10 col-sm-5 col-lg-4 brewcard">
         <div className="well brewwell">
           <div className="brewName"><h3>No Breweries Found</h3></div>
         </div>
