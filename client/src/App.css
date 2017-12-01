@@ -100,7 +100,7 @@ h2{
 .brewcard {
   display: inline-block;
   text-align: center;
-  width: 0 auto;
+  width: auto;
 
 }
 .brewwell {
